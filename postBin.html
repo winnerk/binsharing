@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Bin</title>
+    <meta name="description" content="Expanding Search Bar Deconstructed" />
+    <meta name="keywords" content="transition, search, expanding, search input, sliding input, css3, javascript" />
+    <meta name="author" content="Codrops" />
+    <!--
+        Google Fonts
+        ============================================= -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css">
+
+    <!--
+    CSS
+    ============================================= -->
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="css/jquery.fancybox.css">
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <!-- Animate -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="postBin.html">
+    <!-- Main Responsive -->
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <link rel="stylesheet" type="text/css" href="css/default.css" />
+    <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <script src="js/modernizr.custom.js"></script>
+	
+	<script language="javascript" type="text/javascript">
+
+function check() {
+ var str = form1.phone.value;
+ var strPostCode = form1.postcode.value;
+ var strName = form1.name01.value;
+ var strEmail = form1.email01.value;
+ var strStreet = form1.street.value;
+// var strSub = form1.suburb.value;
+    var strBinType = form1.selectBin.value;
+	var strBinSize = form1.selectBinsize.value;
+    var strBinRoom = form1.selectBinroom.value;
+    //if(str=="" || strPostCode=="" || strName == "" || strEmail == "" || strStreet == "" || strSub == "" || strBinType == ""){
+	if(str=="" || strPostCode=="" || strName == "" || strEmail == "" || strStreet == "" || strBinType == ""||strBinSize == ""||strBinRoom == ""){
+        alert("Please check the compulsary inbox are not blank ");
+        return false;
+    }
+    else{
+        var re = /^\d+$/;
+        if (re.test(str) && isPostCode(strPostCode) == true && validateEmail(strEmail) == true) {
+
+			return true;
+        } else {
+            if(re.test(str))
+            {
+                if(isPostCode(strPostCode) == true)
+                {
+                   alert("Please check your email");
+                    return false;
+                }
+                else if(validateEmail(strEmail) == true)
+                {
+                    alert("Please check the postcode");
+                    return false;
+                }
+                else
+                {
+                    alert("please check the postcode and email");
+                    return false;
+                }
+            }
+            else if(isPostCode(strPostCode) == true)
+            {
+                if(re.test(str))
+                {
+                    alert("Please check the email");
+                    return false;
+                }
+                else if(validateEmail(strEmail) == true)
+                {
+                    alert("please check the phone number");
+                    return false;
+                }
+                else
+                {
+                    alert("please check the email and phone number");
+                    return false;
+                }
+            }
+            else if(validateEmail(strEmail) == true)
+            {
+                if(re.test(str))
+                {
+                    alert("please check the postcode");
+                    return false;
+                }
+                else if(isPostCode(strPostCode) == true)
+                {
+                    alert("please check the phone number");
+                    return false;
+                }
+                else
+                {
+                    alert("Please check the phone number and postcode");
+                    return false;
+                }
+            }
+            else
+            {
+                alert("please check the phone number, postcode and email");
+                return false;
+            }
+
+        }
+    }
+}
+function isNumeric(s) {
+    if (s!=null && s!="")
+    {
+        return !isNaN(s);
+    }
+    return false;
+
+}
+function isPhone(phone) {
+    var re = /^\d+$/;
+    if(re.test(str) == true)
+    {
+        return true
+
+    }
+    else
+    {
+        return false;
+    }
+}
+function isPostCode(code) {
+    if(isNumeric(code) == true)
+    {
+        var count = code.toString().length;
+        if(count == 4)
+        {
+            return true
+        }
+        else
+        {
+            return false
+        }
+    }
+    return false
+}
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(re.test(email) == true)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+</script>
+</head>
+<body>
+
+        <header id="navigation">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- /responsive nav button -->
+
+                    <!-- logo -->
+                    <h1 class="navbar-brand">
+                        <a href="index.html">
+                            <img src="img/logo.jpg" alt="Kasper Logo">
+                        </a>
+                    </h1>
+                    <!-- /logo -->
+
+                    </div>
+
+                    <!-- main nav -->
+                    <nav class="collapse navigation navbar-collapse navbar-right" role="navigation">
+                        <ul id="nav" class="nav navbar-nav">
+                            <li><a href="index.html">Home</a></li>                           
+							<li class="current"><a href="postBin.html">Post</a></li>
+                            <li><a href="searchBin.html">Provider</a></li>
+                            <li><a href="display.php">Display</a></li>
+							<li><a href="wastestation.php">Waste Station</a></li>
+                        </ul>
+                    </nav>
+                    <!-- /main nav -->
+
+
+            </div>
+     
+
+</header>
+<section  id="contact">
+    <div  class="container">
+        <div class="row">
+
+            <div class="section-title text-center wow fadeInDown">
+                <h2>Post a bin</h2>
+                <p>Monash University, Caulfield Campus, Faculty of information technology</p>
+            </div>
+
+            <form name="form1" method="POST" action="postbin.php" onsubmit="return validateForm(this)">
+            <div class="col-md-8 col-sm-9 wow fa-align-center">
+                <div class="contact-form clearfix">
+                    <form action="postbin.php" method="post" onsubmit="return checkMobile()">
+                        <div class="input-field">
+                            <input type="text" class="form-control" name="name01" placeholder="Your Nickname" required="required">
+                        </div>
+                        <div class="input-field">
+                            <input type="email" class="form-control" name="email01" placeholder="Your Email" required="">
+                        </div>
+                        <div class="input-field">
+                            <input type="tel" id="tele" class="form-control" name="phone" placeholder="Your contact number" required="">
+                        </div>
+
+                        
+                            <div class="input-field">
+                                <input type="text" class="form-control" name="street" placeholder="Street" required="required">
+
+                            </div>
+                            
+                            <div class="input-field">
+                                <input type="text" id="postCode01" class="form-control" name="postcode" placeholder="Postcode" required="required">
+                            </div>
+                        
+                        <div class="input-field">
+                            <select name="selectBin" class="form-control form-control-drop">
+                                <option value="" disabled selected hidden class="selectTextColor">Bin Type</option>
+                                <option value="Recycle">Recycle bin</option>
+                                <option value="Rubbish">Rubbish bin</option>
+                                <option value="Organics">Organics Green bin</option>
+                            </select>
+                        </div>
+						<div class="input-field">
+                            <select name="selectBinsize" class="form-control form-control-drop">
+                                <option value="" disabled selected hidden class="selectTextColor">Bin Size</option>
+                                <option value="Small">Small-120L</option>
+                                <option value="Large">Large-240L</option>
+                            </select>
+                        </div>
+						<div class="input-field">
+                            <select name="selectBinroom" class="form-control form-control-drop">
+                                <option value="" disabled selected hidden class="selectTextColor">Spare room for bin</option>
+                                <option value="Quarter">1/4</option>
+                                <option value="Onethird">1/3</option>
+								<option value="Half">1/2</option>
+                            </select>
+                        </div>
+                        <div class="input-field message">
+                            <textarea name="message" class="form-control" placeholder="Your Message to people"></textarea>
+                        </div>
+                        <input type="submit" class="btn btn-blue pull-right" value="POST" id="msg-submit" onclick="check(tele.value);">
+                    </form>
+                </div> <!-- end .contact-form -->
+            </div>
+            </form>
+            <div class="col-md-4 col-sm-3 wow fadeInRight">
+                <div class="contact-details">
+                    <span>Hint</span>
+                    <p>Please enter the basic information. Your info will not be seen by others unless you allowed to. If you have any question, feel free to contact us at:
+                    <br>
+                    <p>Fei Mo</p>
+                    <p>fmo3@student.monash.edu</p>
+                </div> <!-- end .contact-details -->
+
+
+            </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
